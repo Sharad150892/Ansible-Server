@@ -1,0 +1,21 @@
+---
+- hosts: kubernetes
+  user: root
+
+  tasks:
+    # - name: deploy regapp on K8S
+    # command: kubectl delete -f regapp-deployment.yml
+    # ignore_errors: yes 
+
+    #  - name: deploy regapp on K8S
+    # command: kubectl delete -f regapp-service.yml    
+    # ignore_errors: yes
+
+    - name: deploy regapp on K8S
+      command: kubectl apply -f regapp-deployment.yml
+
+    - name: start service regapp on K8S
+      command: kubectl apply -f regapp-service.yml
+
+    - name: Creating new pod whenever any changes in docker hub
+      command: kubectl rollout restart deployment.apps/saidemy-regapp

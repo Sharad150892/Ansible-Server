@@ -1,0 +1,34 @@
+---
+- hosts: dockerhost
+  tasks:
+  - name: Stopping container
+    command: docker stop regapp-server
+    ignore_errors: yes
+
+  - name: Deleting container
+    command: docker rm regapp-server
+    ignore_errors: yes
+
+  - name: Deleting image
+    command: docker rmi sharad150892/regapp:latest
+    ignore_errors: yes
+
+  - name: Creating container
+    command: docker run -d --name regapp-server -p 8082:8080 sharad150892/regapp:latest
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
